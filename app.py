@@ -360,6 +360,18 @@ header h1{
     padding:14px;
     border-radius:10px;
 }
+
+.search-box{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.btn-row{
+    display:flex;
+    gap:10px;
+}
+
 @media (max-width: 768px){
 
     .main{
@@ -380,6 +392,25 @@ header h1{
         flex-direction:column;
         height:auto;
     }
+    .search-box{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .btn-row{
+        display:flex;
+        width:100%;
+        gap:10px;
+    }
+
+    .btn-row button{
+        flex:1;
+    }
+
+    .search-box input{
+        width:100%;
+        font-size:16px;
+    }
 }
 
 </style>
@@ -393,20 +424,19 @@ header h1{
 
 <div class="search-box">
 
-<input
-    type="text"
-    id="searchInput"
-    placeholder="Nhập tên thành phố..."
-    onkeydown="if(event.key==='Enter') searchWeather()"
-/>
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Nhập tên thành phố..."
+        onkeydown="if(event.key==='Enter') searchWeather()"
+    />
 
-<button onclick="searchWeather()">
-    Tìm
-</button>
+    <div class="btn-row">
+        <button onclick="searchWeather()">Tìm</button>
+        <button onclick="getCurrentLocation()">📍 Vị trí hiện tại</button>
+    </div>
 
-<button onclick="getCurrentLocation()">
-    📍 Vị trí hiện tại
-</button>
+</div>
 
 </div>
 
