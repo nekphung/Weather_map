@@ -360,6 +360,27 @@ header h1{
     padding:14px;
     border-radius:10px;
 }
+@media (max-width: 768px){
+
+    .main{
+        flex-direction:column;
+    }
+
+    #map{
+        width:100%;
+        height:45vh;
+    }
+
+    .sidebar{
+        width:100%;
+        height:55vh;
+    }
+
+    header{
+        flex-direction:column;
+        height:auto;
+    }
+}
 
 </style>
 </head>
