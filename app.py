@@ -470,6 +470,43 @@ L.tileLayer(
 
 let marker = null;
 
+// Click lên bản đồ để xem thời tiết
+map.on('click', async function(e) {
+    const lat = e.latlng.lat;
+    const lon = e.latlng.lng;
+
+    setLoading();
+
+    if (marker) {
+        map.removeLayer(marker);
+    }
+
+    marker = L.marker([lat, lon]).addTo(map);
+
+    try {
+        const response = await fetch(
+            `/api/weather/coords?lat=${lat}&lon=${lon}`
+        );
+
+        const data = await response.json();
+
+        if (data.error) {
+            setError(data.error);
+            return;
+        }
+
+        renderWeather(data);
+
+        marker.bindPopup(`
+            <b>${data.current.name}</b><br>
+            ${Math.round(data.current.main.temp)}°C
+        `).openPopup();
+
+    } catch (err) {
+        setError('Không thể tải dữ liệu thời tiết');
+    }
+});
+
 function weatherIcon(desc){
 
     desc = desc.toLowerCase();
